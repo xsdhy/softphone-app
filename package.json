@@ -1,0 +1,67 @@
+{
+  "name": "softphone-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "xsdhy",
+  "description": "softphone",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron main.js",
+    "build:win64": "electron-builder --win --x64",
+    "build:win32": "electron-builder --win --x32",
+    "build:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^29.1.6",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "electron-store": "^7.0.2",
+    "jquery": "^3.5.1",
+    "jr-qrcode": "^1.1.4",
+    "popper.js": "^1.16.1",
+    "electron-updater": "^4.3.5",
+    "electron-log": "^4.3.2"
+  },
+  "build": {
+    "appId": "com.xsdhy.softphone",
+    "productName": "softphone",
+    "directories": {
+      "output": "build"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "icons/logo.png",
+      "artifactName": "${productName}-${platform}-${version}.${ext}"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icons/logo.png",
+      "artifactName": "${productName}-${platform}-${version}.${ext}"
+    },
+    "asarUnpack": [
+      "**/node_modules/axios/**/*",
+      "**/node_modules/jquery/**/*",
+      "**/node_modules/bootstrap/**/*",
+      "**/node_modules/propper.js/**/*",
+      "**/node_modules/electron-store/**/*",
+      "**/node_modules/electron-log/**/*"
+    ],
+    "extraResources":  {
+      "from": "./icons/",
+      "to": "icons/"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": false
+    },
+    "publish": null
+  }
+}
